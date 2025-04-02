@@ -1,1 +1,183 @@
-<h1>hello</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐣 Junior Chikin's Gender Reveal 🍼</title>
+  <style>
+    html {
+      scroll-behavior: auto !important;
+    }
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #fff8f0;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+      color: #333;
+      overflow-x: hidden;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .riddle {
+      background: #ffe8cc;
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .input-area {
+      text-align: center;
+      margin-top: 2rem;
+      position: relative;
+      z-index: 10;
+    }
+    input[type="text"] {
+      font-size: 1.2rem;
+      padding: 0.5rem;
+      width: 120px;
+      text-align: center;
+      z-index: 10;
+      position: relative;
+    }
+    button {
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+      background-color: #ffcc00;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .reveal {
+      display: none;
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 2rem;
+      color: #3399cc;
+      z-index: 5;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff8f0;
+      border: 3px solid #ffcc00;
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      font-size: 2rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+    .popup.show {
+      display: block;
+    }
+    .hint {
+      display: none;
+      margin-top: 0.5rem;
+      font-style: italic;
+      color: #cc0000;
+    }
+    .message {
+      text-align: center;
+      margin-top: 1rem;
+      color: #cc0000;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body onload="document.getElementById('codeInput').focus()">
+  <h1>🐣 Junior Chikin's Gender Reveal 🍼</h1>
+  <p style="text-align:center;">Crack the code from these 4 riddles to reveal the baby’s gender!</p>
+
+  <div class="riddle">
+    <h2>🧒 Riddle 1 – First Digit</h2>
+    <p>Before I can walk, I learn to babble,<br>
+    With shaky steps and tiny scrabble.<br>
+    A single candle marks my start,<br>
+    Of first real words and growing heart.<br>
+    What number marks this tender year,<br>
+    When “mama” or “ball” you first might hear?</p>
+    <p class="hint" id="hint1">Hint: “It’s the age when most first words are spoken.”</p>
+  </div>
+
+  <div class="riddle">
+    <h2>🍗 Riddle 2 – Second Digit</h2>
+    <p>A family feast with sides and spice,<br>
+    You reach the tray — oh, wouldn’t it be nice.<br>
+    But all that’s left is bone and box,<br>
+    The meat is gone, like vanished socks.<br>
+    In pieces left for you to score,<br>
+    Count what’s there… or maybe less than more.</p>
+    <p class="hint" id="hint2">Hint: “You were too slow — and they were hungry.”</p>
+  </div>
+
+  <div class="riddle">
+    <h2>👟 Riddle 3 – Third Digit</h2>
+    <p>You point and grin, no bib in sight,<br>
+    Then blurt a word in pure delight.<br>
+    Not quite “chicken,” but close enough —<br>
+    Your first food word, a little rough.<br>
+    Of all the things you’ve ever said,<br>
+    How many fried treats filled your thread?</p>
+    <p class="hint" id="hint3">Hint: “The number of fried chicken pieces in your very first food memory.”</p>
+  </div>
+
+  <div class="riddle">
+    <h2>🗣️ Riddle 4 – Fourth Digit</h2>
+    <p>By now your words flow clear and fast,<br>
+    The lisps and blends are in the past.<br>
+    You tell full tales with plot and flair,<br>
+    With jokes and rhymes and wild fanfare.<br>
+    At what age do most experts rate,<br>
+    That all speech sounds should articulate?</p>
+    <p class="hint" id="hint4">Hint: “It’s the upper age limit for sound development milestones in SLP.”</p>
+  </div>
+
+  <div class="input-area">
+    <input type="text" id="codeInput" maxlength="4" placeholder="Enter Code">
+    <button onclick="checkCode()">Reveal</button>
+    <button onclick="resetPage()">Reset</button>
+    <p class="message" id="failMessage"></p>
+  </div>
+
+  <div class="popup" id="popupReveal">
+    👦 Junior Chikin is a boy! 👦
+  </div>
+
+  <script>
+    function checkCode() {
+      const correctCode = '1018';
+      const input = document.getElementById('codeInput').value;
+      const failMessage = document.getElementById('failMessage');
+      const popupReveal = document.getElementById('popupReveal');
+
+      if (input === correctCode) {
+        popupReveal.classList.add('show');
+        failMessage.innerText = '';
+      } else {
+        failMessage.innerText = 'Work smarter, not harder';
+        document.getElementById('hint1').style.display = 'block';
+        document.getElementById('hint2').style.display = 'block';
+        document.getElementById('hint3').style.display = 'block';
+        document.getElementById('hint4').style.display = 'block';
+      }
+    }
+
+    function resetPage() {
+      document.getElementById('codeInput').value = '';
+      document.getElementById('failMessage').innerText = '';
+      document.getElementById('popupReveal').classList.remove('show');
+      document.getElementById('hint1').style.display = 'none';
+      document.getElementById('hint2').style.display = 'none';
+      document.getElementById('hint3').style.display = 'none';
+      document.getElementById('hint4').style.display = 'none';
+      document.getElementById('codeInput').focus();
+    }
+  </script>
+</body>
+</html>
